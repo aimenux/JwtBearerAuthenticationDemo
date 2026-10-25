@@ -1,3 +1,5 @@
+[![.NET](https://github.com/aimenux/JwtBearerAuthenticationDemo/actions/workflows/ci.yml/badge.svg)](https://github.com/aimenux/JwtBearerAuthenticationDemo/actions/workflows/ci.yml)
+
 # 🎟️ JwtAuthenticationDemo
 
 > Twelve small ASP.NET Core Web API projects that protect the same movies API with a **JWT bearer token** in the `Authorization` header, each using a different authentication mechanism.

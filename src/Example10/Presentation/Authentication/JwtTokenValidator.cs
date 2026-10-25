@@ -27,7 +27,8 @@ public sealed class JwtTokenValidator : IDisposable
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateIssuerSigningKey = true,
-            ValidateLifetime = true
+            ValidateLifetime = true,
+            CryptoProviderFactory = new CryptoProviderFactory { CacheSignatureProviders = false }
         };
     }
 

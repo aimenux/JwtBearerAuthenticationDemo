@@ -1,8 +1,8 @@
+using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Net.Sockets;
 using AwesomeAssertions;
 using Microsoft.AspNetCore.Builder;
-using Example01;
 
 namespace Example01.Tests.IntegrationTests;
 
@@ -53,6 +53,7 @@ public class WebApiTransportTests
     private static WebApplication CreateApp(int port)
     {
         var builder = WebApplication.CreateBuilder(["--Https:Port=" + port], enforceHttps: true);
+        builder.Logging.ClearProviders();
 
         var app = builder.Build();
         app.MapGet("/ping", () => "pong");
