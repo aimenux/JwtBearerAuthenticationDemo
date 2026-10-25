@@ -1,0 +1,21 @@
+@baseUrl = https://localhost:5009
+@token = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNb3ZpZXNBcGkiLCJpc3MiOiJKd3RBdXRoZW50aWNhdGlvbkRlbW8iLCJleHAiOjIxMDgyOTUxNTEsIm5iZiI6MTc5MjkzNTE1MSwic3ViIjoiZGVtby11c2VyIiwibmFtZSI6ImRlbW8tdXNlciIsImlhdCI6MTc5MjkzNTE1MX0.OIjhj9M7cNEyN5TrIb-H5n5iCQUV39o4KBZi80bm7vA9c9RsHAQHxu2iYAuZLYQXLgokadLbPne6C7At_e-MQctUSoGExA7H55pfA2s0kjzcC0qY3GrTSYnCs7-aaiKDnx2s0CiqG7De7DekloPNX3auGDybk2vHBlFCGMPfnXXbm_RYncGoMIORoIVBLJggaaxeXHFRUPYNmHfOOPGIpxfa29gTEch6dYDs_V93AXKSVU_twTODz6nXSr3TRqjovEpaEO517G7JXyWZxk29LjBJTHWUMOHuopCyaZpwwkfD8pCXvgYIpdRO0c_NIFBFXKw-mGzq-e9urW3A37IFlw
+
+###
+
+GET {{baseUrl}}/api/movies/list
+Authorization: Bearer {{token}}
+
+###
+
+GET {{baseUrl}}/api/movies/1
+Authorization: Bearer {{token}}
+
+###
+
+GET {{baseUrl}}/api/movies/list
+
+###
+
+GET {{baseUrl}}/api/movies/list
+Authorization: Bearer not-a-valid-token

@@ -1,0 +1,21 @@
+@baseUrl = https://localhost:5003
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKd3RBdXRoZW50aWNhdGlvbkRlbW8iLCJhdWQiOiJNb3ZpZXNBcGkiLCJzdWIiOiJkZW1vLXVzZXIiLCJuYW1lIjoiZGVtbyIsImlhdCI6MTc5MjkyNDE5MywibmJmIjoxNzkyOTI0MTkzLCJleHAiOjIxMDgyODQxOTN9.zlbTj_7HmPyRUa6wxYAyhYpp7ArTz8aC0d-Hl4aEiIY
+
+###
+
+GET {{baseUrl}}/api/movies/list
+Authorization: Bearer {{token}}
+
+###
+
+GET {{baseUrl}}/api/movies/1
+Authorization: Bearer {{token}}
+
+###
+
+GET {{baseUrl}}/api/movies/list
+
+###
+
+GET {{baseUrl}}/api/movies/list
+Authorization: Bearer not-a-valid-token

@@ -1,0 +1,40 @@
+<Solution>
+  <Folder Name="/Examples.Tests/">
+    <Project Path="test/Example01.Tests/Example01.Tests.csproj" />
+    <Project Path="test/Example02.Tests/Example02.Tests.csproj" />
+    <Project Path="test/Example03.Tests/Example03.Tests.csproj" />
+    <Project Path="test/Example04.Tests/Example04.Tests.csproj" />
+    <Project Path="test/Example05.Tests/Example05.Tests.csproj" />
+    <Project Path="test/Example06.Tests/Example06.Tests.csproj" />
+    <Project Path="test/Example07.Tests/Example07.Tests.csproj" />
+    <Project Path="test/Example08.Tests/Example08.Tests.csproj" />
+    <Project Path="test/Example09.Tests/Example09.Tests.csproj" />
+    <Project Path="test/Example10.Tests/Example10.Tests.csproj" />
+    <Project Path="test/Example11.Tests/Example11.Tests.csproj" />
+    <Project Path="test/Example12.Tests/Example12.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Examples/">
+    <Project Path="src/Example01/Example01.csproj" />
+    <Project Path="src/Example02/Example02.csproj" />
+    <Project Path="src/Example03/Example03.csproj" />
+    <Project Path="src/Example04/Example04.csproj" />
+    <Project Path="src/Example05/Example05.csproj" />
+    <Project Path="src/Example06/Example06.csproj" />
+    <Project Path="src/Example07/Example07.csproj" />
+    <Project Path="src/Example08/Example08.csproj" />
+    <Project Path="src/Example09/Example09.csproj" />
+    <Project Path="src/Example10/Example10.csproj" />
+    <Project Path="src/Example11/Example11.csproj" />
+    <Project Path="src/Example12/Example12.csproj" />
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="src/JwtTokenGenerator/JwtTokenGenerator.csproj" />
+    <Project Path="src/JwtTokenInspector/JwtTokenInspector.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+  </Folder>
+</Solution>
