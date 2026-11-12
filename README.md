@@ -276,7 +276,7 @@ JwtBearerAuthenticationDemo/
 
 | Tool | Purpose |
 |------|---------|
-| 🟣 **.NET 10 / ASP.NET Core** | Web API, Kestrel, authentication and authorization |
+| 🟣 **.NET 11 / ASP.NET Core** | Web API, Kestrel, authentication and authorization |
 | 🎟️ **Microsoft.AspNetCore.Authentication.JwtBearer** | Built-in JWT Bearer handler (Examples 11 and 12) |
 | 🎟️ **Microsoft.IdentityModel.JsonWebTokens** | JWT validation (`JsonWebTokenHandler`) and token creation in tests |
 | 📘 **Swagger / Swashbuckle** | Interactive API docs with an HTTP bearer security scheme (Development only) |
