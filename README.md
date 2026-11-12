@@ -60,7 +60,7 @@ Each example therefore only listens on HTTPS:
 
 ### 1️⃣ Prerequisites
 
-- [.NET SDK](https://dotnet.microsoft.com/download) matching `global.json` (`10.0.x`)
+- [.NET SDK](https://dotnet.microsoft.com/download) matching `global.json` (`11.0.x`)
 - A trusted development certificate (`dotnet dev-certs https --trust`)
 
 ### 2️⃣ Run an example

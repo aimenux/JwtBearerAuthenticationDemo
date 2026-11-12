@@ -23,8 +23,7 @@ app.UseAuthorization();
 
 var appGroup = app
     .MapGroup("/api/movies")
-    .RequireAuthorization()
-    .WithGroupName("Movies");
+    .RequireAuthorization();
 
 appGroup
     .MapGet("list", (IMoviesEndpoints endpoints, CancellationToken cancellationToken) => endpoints.GetMoviesAsync(cancellationToken))
