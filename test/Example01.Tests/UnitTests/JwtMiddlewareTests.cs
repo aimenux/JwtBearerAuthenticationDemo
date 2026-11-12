@@ -54,6 +54,23 @@ public class JwtMiddlewareTests
         context.Response.StatusCode.Should().Be(StatusCodes.Status401Unauthorized);
     }
 
+    [Fact]
+    public async Task When_No_Endpoint_Matches_Then_Should_Skip_Authentication_And_Call_Next()
+    {
+        // Arrange
+        var context = CreateContext(null);
+        context.SetEndpoint(null);
+        var nextCalled = false;
+        var middleware = new JwtMiddleware(_ => { nextCalled = true; return Task.CompletedTask; }, TestTokens.CreateValidator());
+
+        // Act
+        await middleware.InvokeAsync(context);
+
+        // Assert
+        nextCalled.Should().BeTrue();
+        context.Response.StatusCode.Should().Be(StatusCodes.Status200OK);
+    }
+
     private static DefaultHttpContext CreateContext(string authorization)
     {
         var context = new DefaultHttpContext
@@ -63,6 +80,7 @@ public class JwtMiddlewareTests
                 Body = new MemoryStream()
             }
         };
+        context.SetEndpoint(new Endpoint(_ => Task.CompletedTask, new EndpointMetadataCollection(), "test"));
 
         if (authorization is not null)
         {

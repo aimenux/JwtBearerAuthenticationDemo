@@ -151,8 +151,8 @@ Exit codes: `0` valid, `2` decoded but invalid (the reason is printed), `1` usag
 
 | # | 🧱 Style | 🔑 Mechanism | 📍 Scope | ❓ Status Code | 🔌 Port |
 |---|----------|--------------|----------|------------------|---------|
-| 01 | Controllers | Middleware | Global | **401** | `5001` |
-| 02 | Minimal API | Middleware | Global | **401** | `5002` |
+| 01 | Controllers | Middleware | Global | 404 | `5001` |
+| 02 | Minimal API | Middleware | Global | 404 | `5002` |
 | 03 | Controllers | Authorization filter | Global | 404 | `5003` |
 | 04 | Minimal API | Endpoint filter | Per route group | 404 | `5004` |
 | 05 | Controllers | Authorization filter | Per action (attribute) | 404 | `5005` |
@@ -166,7 +166,7 @@ Exit codes: `0` valid, `2` decoded but invalid (the reason is printed), `1` usag
 
 ### 🔍 Reading the table
 
-- **Middleware (01, 02)** runs for every request, so unknown routes are also protected and return `401`.
+- **Middleware (01, 02)** runs for every request but skips authentication when no endpoint matched (`context.GetEndpoint()` is `null`), so unknown routes return `404` as usual while matched routes still require a valid token.
 - **Filters and schemes (03–08)** run only for matched endpoints, so unknown routes return `404` as usual.
 - **Asymmetric signing (09, 10)** verifies tokens with an RSA public key (`Authentication:PublicKeyPem`, PEM format) instead of a shared secret. The server can check tokens but cannot issue them. These examples use the same custom scheme as Examples 07 and 08.
 - **Built-in handler (11, 12)** uses `AddJwtBearer()`, the framework's own JWT validation. It is the production-style option. These examples have no authorization policy, so any valid token passes.
@@ -224,7 +224,7 @@ Integration tests run the real pipeline in memory with `WebApplicationFactory`. 
 
 - `WebApiTransportTests` start the app's real Kestrel listener on a free port, which the in-memory tests do not cover. Kestrel closes a plain-HTTP request sent to the TLS-only port without an HTTP response, so the test expects the request to fail. HTTPS needs the ASP.NET Core development certificate (`dotnet dev-certs https --trust`). The test client accepts it without validation.
 - `WebApiTokenRejectionTests` send forged tokens: `alg: none`, a modified payload with the original signature, a wrong issuer, a non-Bearer scheme, and a `Bearer` header with no token. Examples 01–08, 11, and 12 also reject an RS256 token. Examples 09 and 10 also reject an HS256 token keyed with the public PEM, the classic algorithm-confusion attack.
-- `WebApiRouteTests` check the response bodies of both routes and the `404` for an unknown id and a non-integer id.
+- `WebApiRouteTests` check the response bodies of both routes and the `404` for an unknown id and a non-integer id. Examples 01 and 02 also check that unknown routes return `404` with or without a token, and that known routes return `401` without a token.
 
 ## 🏭 Going to production
 

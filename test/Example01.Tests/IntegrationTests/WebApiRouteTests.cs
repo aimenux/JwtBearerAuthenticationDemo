@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using AwesomeAssertions;
+using Example01.Presentation.Authentication;
 using Example01.Tests.IntegrationTests.Fixtures;
 
 namespace Example01.Tests.IntegrationTests;
@@ -69,5 +70,57 @@ public class WebApiRouteTests
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    }
+
+    [Theory]
+    [InlineData("api/movies")]
+    [InlineData("api/users")]
+    [InlineData("foo")]
+    public async Task Should_Return_NotFound_For_Unknown_Route_Without_Token(string route)
+    {
+        // Arrange
+        await using var fixture = new WebApiTestsFixture();
+        var client = fixture.CreateClient();
+        client.DefaultRequestHeaders.Remove(JwtConstants.AuthorizationHeaderName);
+
+        // Act
+        var response = await client.GetAsync(route);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    }
+
+    [Theory]
+    [InlineData("api/movies")]
+    [InlineData("api/users")]
+    [InlineData("foo")]
+    public async Task Should_Return_NotFound_For_Unknown_Route_With_Valid_Token(string route)
+    {
+        // Arrange
+        await using var fixture = new WebApiTestsFixture();
+        var client = fixture.CreateClient();
+
+        // Act
+        var response = await client.GetAsync(route);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    }
+
+    [Theory]
+    [InlineData("api/movies/1")]
+    [InlineData("api/movies/list")]
+    public async Task Should_Return_Unauthorized_For_Known_Route_Without_Token(string route)
+    {
+        // Arrange
+        await using var fixture = new WebApiTestsFixture();
+        var client = fixture.CreateClient();
+        client.DefaultRequestHeaders.Remove(JwtConstants.AuthorizationHeaderName);
+
+        // Act
+        var response = await client.GetAsync(route);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
     }
 }

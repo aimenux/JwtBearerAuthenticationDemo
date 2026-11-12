@@ -13,6 +13,12 @@ public class JwtMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
+        if (IsUnmatchedRoute(context))
+        {
+            await _next(context);
+            return;
+        }
+
         var principal = await _validator.AuthenticateAsync(context.Request.Headers);
         if (principal is null)
         {
@@ -25,6 +31,8 @@ public class JwtMiddleware
         context.User = principal;
         await _next(context);
     }
+
+    private static bool IsUnmatchedRoute(HttpContext context) => context.GetEndpoint() is null;
 }
 
 public static class AuthenticationMiddlewareExtensions
